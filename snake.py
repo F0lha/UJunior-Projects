@@ -27,8 +27,8 @@ updateWorldID = pygame.USEREVENT + 1
 direction = 1
 
         
-def moveSnake(direction):
-    global fruit, snake
+def moveSnake():
+    global fruit, snake, direction
     head = list(snake[0])
     if(direction == 0):
         head[0] = (head[0] + 1) % 8
@@ -52,20 +52,22 @@ def moveSnake(direction):
     else:
         snake = [head] + snake
         if head != fruit:
-            snake.pop(-1)
+            return snake.pop(-1)
         else:
             randomFruit(snake)
 
-def drawWorld(snake):
-    global fruit
-    sense.clear(0,0,0)
+def drawWorld(removed):
+    global fruit, snake
+    
+    if removed is not None:
+        sense.set_pixel(removed[0],removed[1],0,0,0)
     for point in snake:
         sense.set_pixel(point[0],point[1],255,255,255)
     sense.set_pixel(fruit[0],fruit[1],0,255,0)
 
 def updateWorld():
-    moveSnake(direction)
-    drawWorld(snake)
+    removed = moveSnake()
+    drawWorld( removed)
     pygame.time.set_timer(updateWorldID, 250)
 
 
@@ -76,16 +78,16 @@ while 1:
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and direction != 3:
+            if event.key == pygame.K_UP and direction != 3 and direction != 1:
                 direction = 1
                 updateWorld()
-            elif event.key == pygame.K_DOWN and direction != 1:
+            elif event.key == pygame.K_DOWN and direction != 1 and direction != 3:
                 direction = 3
                 updateWorld()
-            elif event.key == pygame.K_RIGHT and direction != 2:
+            elif event.key == pygame.K_RIGHT and direction != 2 and direction != 0:
                 direction = 0
                 updateWorld()
-            elif event.key == pygame.K_LEFT and direction != 0:
+            elif event.key == pygame.K_LEFT and direction != 0 and direction != 2:
                 direction = 2
                 updateWorld()
         elif event.type == updateWorldID:
