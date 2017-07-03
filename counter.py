@@ -37,7 +37,7 @@ def updateCounter():
 def gameover():
     diff = pygame.time.get_ticks() - ticks
     secs = abs((diff/ float(speed) + (counter - 1)))
-    sense.show_message("Falhase por " + '{:.3f}'.format(secs) + " sec!",0.06)
+    sense.show_message("Falhaste por " + '{:.3f}'.format(secs) + " sec!",0.06)
     sys.exit()
 
 pygame.time.set_timer(updateCounterID,speed)
@@ -45,6 +45,7 @@ pygame.time.set_timer(updateCounterID,speed)
 
 while 1:
     for event in pygame.event.get():
+        senseEvents = sense.stick.get_events()
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
@@ -54,3 +55,5 @@ while 1:
             updateCounter()
             if counter < - 5:
                 gameover()
+        elif len(senseEvents) > 0:
+            gameover()
