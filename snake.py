@@ -9,6 +9,8 @@ sense = SenseHat()
 pygame.init()
 pygame.display.set_mode()
 
+sense.clear(0,0,0)
+
 snakeHead = [5,5]
 
 snake = [snakeHead]
