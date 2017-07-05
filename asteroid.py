@@ -50,7 +50,15 @@ def movePlayer(direction):
     sense.set_pixel(player[0],player[1], green)
 
 def moveEnemy(enemy):
-    sense.set_pixel(enemy[0],enemy[1], black) #clear
+    delete = True
+    for key,value in enemies.items():
+        if value != None:
+            if enemy[3] != value[3]:
+                if enemy[0] == value[0] and enemy[1] == value[1]:
+                    delete = False
+                    break
+    if delete:
+        sense.set_pixel(enemy[0],enemy[1], black) #clear
     
     #right
     if enemy[2] == 0:
