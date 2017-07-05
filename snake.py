@@ -71,8 +71,7 @@ def updateWorld():
     removed = moveSnake()
     drawWorld( removed)
     pygame.time.set_timer(updateWorldID, 250)
-
-
+        
 pygame.time.set_timer(updateWorldID, 250)
 
 while 1:
@@ -80,16 +79,16 @@ while 1:
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and direction != 3 and direction != 1:
+            if event.key == pygame.K_UP and direction != 3:
                 direction = 1
                 updateWorld()
-            elif event.key == pygame.K_DOWN and direction != 1 and direction != 3:
+            elif event.key == pygame.K_DOWN and direction != 1:
                 direction = 3
                 updateWorld()
-            elif event.key == pygame.K_RIGHT and direction != 2 and direction != 0:
+            elif event.key == pygame.K_RIGHT and direction != 2:
                 direction = 0
                 updateWorld()
-            elif event.key == pygame.K_LEFT and direction != 0 and direction != 2:
+            elif event.key == pygame.K_LEFT and direction != 0:
                 direction = 2
                 updateWorld()
         elif event.type == updateWorldID:
