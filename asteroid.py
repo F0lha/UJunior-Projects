@@ -132,7 +132,6 @@ def createEnemy():
     index = getIndex()
     enemy = [x,y,randomDirection, index]
     enemies[index] = enemy
-    print(index)
     pygame.time.set_timer(index,1000)
     drawEnemy(enemy)
     pygame.time.set_timer(createEnemyID,random.randrange(1500,2500))
