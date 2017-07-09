@@ -10,7 +10,7 @@ pygame.init()
 pygame.display.set_mode()
 
 #initial spot
-speed = random.randrange(1000,1001)
+speed = random.randrange(200,1500)
 
 counter = 8
 
