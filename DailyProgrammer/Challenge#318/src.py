@@ -11,11 +11,23 @@ def create_formula(combination,numbers):
     return formula
 
 def evaluate(form):
-    if len(form) == 1:
-        return int(form[0])
-    else:
-        if
-        
+    result = 0
+    for index in range(len(form)):
+        if form[index] == "+":
+            result += int(form[index+1])
+            index += 1
+        elif form[index] == "-":
+            result -= int(form[index+1])
+            index += 1
+        elif form[index] == "*":
+            result *= int(form[index+1])
+            index += 1
+        elif form[index] == "/":
+            result //= int(form[index+1])
+            index += 1
+        else:
+            result += int(form[index])  
+    return result
 
 def countdown(numbers):
     rightCombinations = []
@@ -26,9 +38,7 @@ def countdown(numbers):
         for permut in perms:
             formula = create_formula(combination,permut)
             form = re.split("([*+-/])",formula)
-            print(form)
-            print(int(evaluate(form)))
-            if int(evaluate(form)) == finalScore:
+            if int(evaluate(form)) == int(finalScore):
                 rightCombinations.append(formula)
     return rightCombinations
 
@@ -64,6 +74,12 @@ def returnAllCombinations(size):
             
     return listFinal
 
+out = open("output.txt",'w')
+
 for line in open("input.txt",'r'):
-    print(countdown(line.split(" ")))
+    for formula in countdown(line.split(" ")):
+        out.write(formula)
+        out.write("\n")
+    out.write("\n\n")
+
 
