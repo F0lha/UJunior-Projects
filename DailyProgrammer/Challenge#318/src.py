@@ -12,35 +12,9 @@ def create_formula(combination,numbers):
 
 def evaluate(form):
     if len(form) == 1:
-        print(form)
         return int(form[0])
-    plus = False
-    minus = False
-    try:
-        plusIndex = form.index('+')
-    except:
-        plus = True
-        plusIndex = -1
-    try:
-        minusIndex = form.index('-')
-    except:
-        minus = True
-        minusIndex = -1
-
-    if not minus:
-        if not plus:
-            if plusIndex < minusIndex:
-                return evaluate(form[:plusIndex]) + evaluate(form[plusIndex+1:])
-            else:
-                return evaluate(form[:minusIndex]) - evaluate(form[minusIndex+1:])
-        else:
-             return evaluate(form[:minusIndex]) - evaluate(form[minusIndex+1:])
     else:
-        if not plus:
-             return evaluate(form[:plusIndex]) - evaluate(form[plusIndex+1:])
-    
-    print
-    return int(eval(''.join(form)))
+        if
         
 
 def countdown(numbers):
@@ -51,7 +25,9 @@ def countdown(numbers):
     for combination in combinations:
         for permut in perms:
             formula = create_formula(combination,permut)
-            form = re.split("([*|+|-|/])",formula)
+            form = re.split("([*+-/])",formula)
+            print(form)
+            print(int(evaluate(form)))
             if int(evaluate(form)) == finalScore:
                 rightCombinations.append(formula)
     return rightCombinations
