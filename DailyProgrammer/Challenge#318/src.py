@@ -9,7 +9,9 @@ def create_formula(combination,numbers):
         index += 1
     formula += numbers[index]
     return formula
-
+'''
+    Unnecessary Funtion
+'''
 def evaluate(form):
     result = 0
     for index in range(len(form)):
@@ -37,8 +39,9 @@ def countdown(numbers):
     for combination in combinations:
         for permut in perms:
             formula = create_formula(combination,permut)
-            form = re.split("([*+-/])",formula)
-            if int(evaluate(form)) == int(finalScore):
+            #form = re.split("([*+-/])",formula)
+            #if int(evaluate(form)) == int(finalScore):
+            if int(eval(formula)) == int(finalScore):
                 rightCombinations.append(formula)
     return rightCombinations
 
